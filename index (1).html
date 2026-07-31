@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Security Feed — Object Detection Console</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="console">
+  <div class="titlebar" id="titlebar">
+    <span><span class="dot"></span>SECURITY FEED — CAM 01</span>
+    <span id="clock">--:--:--</span>
+  </div>
+
+  <div class="frame-wrap">
+    <video id="video" autoplay muted playsinline></video>
+    <canvas id="overlay"></canvas>
+    <div class="scanline" id="scanline" style="display:none;"></div>
+  </div>
+
+  <div class="status-row">
+    <div class="status-cell">
+      <div class="label">Detector</div>
+      <div class="value" id="detectorState">Idle</div>
+    </div>
+    <div class="status-cell">
+      <div class="label">Status</div>
+      <div class="value clear" id="gunStatus">Not Detected</div>
+    </div>
+    <div class="status-cell">
+      <div class="label">Detections</div>
+      <div class="value" id="detCount">0</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="startBtn">Start Feed</button>
+    <button id="stopBtn" disabled>Stop Feed</button>
+  </div>
+
+  <div class="log" id="log"></div>
+
+  <div class="hint">
+    Place your trained <code>cascade.xml</code> in the same folder as this file
+    (or edit <code>CASCADE_URL</code> in <code>script.js</code>) before starting the feed.
+    Detection runs entirely client-side via OpenCV.js — no frames leave the browser.
+  </div>
+</div>
+
+<!-- OpenCV.js (WASM build) -->
+<script async src="https://docs.opencv.org/4.9.0/opencv.js" onload="onOpenCvReady()"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
