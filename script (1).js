@@ -72,7 +72,7 @@ async function startFeed() {
   try {
     stream = await navigator.mediaDevices.getUserMedia({ video: true });
   } catch (err) {
-    logLine('Camera error: ' + err.message, true);
+    logLine('Camera Error: ' + err.message, true);
     return;
   }
   video.srcObject = stream;
